@@ -1,7 +1,9 @@
-:global(.light) .MainPage {
-  background-color: white;
+.MainPage {
+  h1 {
+    font-size: 2rem;
+  }
 }
 
-:global(.dark) .MainPage {
-  background-color: black;
+.title {
+  text-decoration: underline;
 }
