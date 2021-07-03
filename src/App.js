@@ -1,34 +1,24 @@
-import { useState } from "react";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
-
 import styles from "./App.module.scss";
 
-import Nav from "./Nav";
-import AboutPage from "./pages/AboutPage";
-import MainPage from "./pages/MainPage";
+import InnerPage from "./InnerPage";
 
 function App() {
-  const [isDarkTheme, setIsDarkTheme] = useState(true);
+  const toggleTheme = () => {
+    const rootElem = document.documentElement;
+    if (rootElem.dataset.theme === "light") {
+      rootElem.dataset.theme = "dark";
+    } else {
+      rootElem.dataset.theme = "light";
+    }
+  };
 
   return (
-    <div className={isDarkTheme ? "dark" : "light"}>
-      <div className={styles.App}>
-        <h1 className={styles.title}>css-module</h1>
-        <button size="small" onClick={() => setIsDarkTheme(!isDarkTheme)}>
-          {isDarkTheme ? "🌙" : "☀️"}
-        </button>
-        <Router>
-          <Nav />
-          <Switch>
-            <Route path="/about">
-              <AboutPage />
-            </Route>
-            <Route path="/">
-              <MainPage />
-            </Route>
-          </Switch>
-        </Router>
-      </div>
+    <div className={styles.App}>
+      <h1 className={styles.title}>css-module</h1>
+      <button size="small" onClick={toggleTheme}>
+        change theme
+      </button>
+      <InnerPage />
     </div>
   );
 }
